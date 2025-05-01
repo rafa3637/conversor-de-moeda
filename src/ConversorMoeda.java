@@ -1,10 +1,13 @@
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 public class ConversorMoeda {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int opcao;
+
+        DecimalFormat df = new DecimalFormat("#,##0.00");
 
         do {
             System.out.println("\n=== CONVERSOR DE MOEDAS ===");
@@ -40,9 +43,11 @@ public class ConversorMoeda {
 
             try {
                 String json = APIClient.buscarTaxaDeCambio(from, to, valor);
-                double resultado = JSONParser.extrairResultado(json);
+                double taxa = JSONParser.extrairResultado(json);
 
-                System.out.printf("Resultad: %.2f %s = %.2f %s%n", valor, from, resultado, to);
+                double valorConvertido = valor * taxa;
+
+                System.out.printf("Resultad: %s %s = %s %s%n", valor, from,  valorConvertido, to);
             } catch (IOException | InterruptedException e) {
                 System.out.println("Erro na comunicação com a API: " + e.getMessage());
             }

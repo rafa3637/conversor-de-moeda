@@ -9,7 +9,7 @@ public class APIClient {
     //private static final String BASE_URL = "https://v6.exchangerate-api.com/v6/";
 
     public static String buscarTaxaDeCambio(String from, String to, double amount) throws IOException, InterruptedException {
-        String endereco = " https://v6.exchangerate-api.com/v6/99fa009ccdcc0eab4084c269/latest/" + from;
+        String endereco = "https://v6.exchangerate-api.com/v6/99fa009ccdcc0eab4084c269/latest/" + from;
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
